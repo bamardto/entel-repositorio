@@ -1,82 +1,43 @@
-$(document).on('click', ".btn_sidebar", (e)=>{
-    data = e.target.getAttribute("data-pos");
-    console.log(data);
-    setCurrentPathWithIndex(data);
-});
+import {requestHangleCurrentPath, 
+        requestSetCurrentPathWithIndex, 
+        requestHandleFolderAndFiles} from "./http.js";
 
-$(document).on('click', ".folder", (e)=>{
-    data = e.target.closest(".folder").getAttribute("data-path");
-    console.log(data);
-    hangleCurrentPath(data);
-})
+export default class PathManager{
+    async hangleCurrentPath(path=""){
 
+        const formData = new FormData();
+        formData.append("action", "get_current_path");
+        formData.append("path", path);
 
-
-hangleCurrentPath()
-
-function hangleCurrentPath(path=""){
-    const xml = new XMLHttpRequest();
-    
-    xml.onreadystatechange = () => {
-        if(xml.readyState == xml.DONE){
-            if(xml.status == 200){
-                const json = JSON.parse(xml.response)
+        await requestHangleCurrentPath("path-manager/index.php", formData).
+            then(json=>{
                 let res = json["path"];
-                console.log(res);
                 $(".title").html(res);
-                handleFolderAndFiles(json["current_path"]);
-            }else{
-                alert(xml.response);
-            }
-        }
+                this.handleFolderAndFiles(json["current_path"]);
+            }).
+            catch(e=>alert(e))
     }
 
-    xml.open("POST", "path-manager/index.php", true);
-
-    const formData = new FormData();
-    formData.append("action", "get_current_path");
-    formData.append("path", path);
-    xml.send(formData);
-}
-
-function setCurrentPathWithIndex(index){
-    const xml = new XMLHttpRequest();
+    async setCurrentPathWithIndex(index){
+        const formData = new FormData();
+        formData.append("action", "set_current_path_with_index");
+        formData.append("index", index);
+        await requestSetCurrentPathWithIndex("path-manager/index.php", formData).
+            then(_ =>{
+                this.hangleCurrentPath()
+            }).
+            catch(e=>alert(e))        
+    }
     
-    xml.onreadystatechange = () => {
-        if(xml.readyState == xml.DONE){
-            if(xml.status == 200){
-                hangleCurrentPath();
-            }else{
-                alert(xml.response);
-            }
-        }
+    async handleFolderAndFiles(path){    
+        const formData = new FormData();
+        formData.append("action", "set_current_path");
+        formData.append("path", path);
+        await requestHandleFolderAndFiles("path-manager/index.php", formData)
+            .then(res=>{
+                document.querySelector(".content").innerHTML = res;
+            }).
+            catch(e => alert(e))
+       
     }
-
-    xml.open("POST", "path-manager/index.php", true);
-
-    const formData = new FormData();
-    formData.append("action", "set_current_path_with_index");
-    formData.append("index", index);
-    xml.send(formData);
-}
-
-function handleFolderAndFiles(path){
-    const xml = new XMLHttpRequest();
-    
-    xml.onreadystatechange = () => {
-        if(xml.readyState == xml.DONE){
-            if(xml.status == 200){
-                document.querySelector(".content").innerHTML = xml.response;
-            }else{
-                alert(xml.response);
-            }
-        }
-
-    }
-    xml.open("POST", "path-manager/index.php", true);
-
-    const formData = new FormData();
-    formData.append("action", "set_current_path");
-    formData.append("path", path);
-    xml.send(formData);
 }

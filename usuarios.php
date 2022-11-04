@@ -124,6 +124,7 @@
                      }
                   ?>
                </ul>
+               
             </aside>
             <div class="tools">
                <nav>
@@ -215,7 +216,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
       <script src="js/jquery.autocompleter.js"></script>
       <script src="js/main.js?v=2"></script>
-      <script src="scripts/path-manager.js"></script>
+      <script src="./init.js" type="module"></script>
+      <!-- <script src="scripts/path-manager.js"></script> -->
       <!-- <script src="scripts/storage-manager.js"></script> -->
       <script src="scripts/create-user.js"></script>
    </body>

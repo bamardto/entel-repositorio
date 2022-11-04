@@ -29,7 +29,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST" AND isset($_POST["action"]) AND !empty(
         $res = array(
             "path"=>$final_path,
             "current_path"=>$current_path);
-
+        
+        header("Content-Type: application/json");
         echo json_encode($res);
     }
     else if($action === "set_current_path_with_index"){
@@ -51,6 +52,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" AND isset($_POST["action"]) AND !empty(
             "path"=>$final_path,
             "current_path"=>$current_path);
 
+        header("Content-Type: application/json");
         echo json_encode($res);
     }
     else if($action === "set_current_path"){
@@ -76,8 +78,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST" AND isset($_POST["action"]) AND !empty(
                 $results .= Widgets::homeRowListFolder($p,"$home_dir/$p");
             }
         }
-
+        header("Content-Type: application/json");
         echo $results;
         
+    }else{
+        header("HTTP/1.0 404 Not Found");
+        echo "<h1>Page not found</h1>";
+        echo "La pagina requerida no pudo ser encontrada";
+        exit;
     }
 }

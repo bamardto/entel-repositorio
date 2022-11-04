@@ -1,6 +1,7 @@
 getUsers();
 
 document.forms['formAddUser'].onsubmit = (e) => {
+    console.log("clicked");
     e.preventDefault();
 
     const xml = new XMLHttpRequest();
@@ -17,7 +18,7 @@ document.forms['formAddUser'].onsubmit = (e) => {
     }
     const formData = new FormData(document.forms['formAddUser']);
     formData.append("action","register");
-    xml.open("POST", "./user-crud/index.php", true);
+    xml.open("POST", "user-crud/index.php", true);
     xml.send(formData);
 }
 
@@ -38,3 +39,4 @@ function getUsers(){
     xml.open("GET", "./user-crud/index.php", true);
     xml.send();
 }
+

@@ -378,6 +378,14 @@ header .wrapper .logout img {
   display: flex;
   padding: 120px 0 0 186px;
 }
+.container #main-content-tool{
+  overflow-x: hidden;
+  width: 100%;
+}
+.container #main-content-tool-user{
+  overflow-x: hidden;
+  width: 100%;
+}
 @media (max-width: 860px) {
   .container {
     padding: 96px 0 0;
@@ -877,6 +885,13 @@ header .wrapper .logout img {
   display: flex;
   align-items: center;
 }
+.container .main-content .title-user {
+  font: 18px "Barlow", sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
 .container .main-content .title li{
   list-style: none;
 }
@@ -1187,7 +1202,7 @@ header .wrapper .logout img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   margin: auto;
   top: -25px;
   bottom: 0;
@@ -1279,10 +1294,7 @@ header .wrapper .logout img {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-.modal button:disabled {
-  background: #AEAEAE;
-  cursor: default;
-}
+
 .modal.delete-user h2 {
   font-weight: 400;
   text-align: center;

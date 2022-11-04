@@ -9,6 +9,12 @@ $conn = new Config();
 if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && !empty($_POST["action"])){
     $action = Utils::sanitize($conn->getConnection(), $_POST["action"]);
   
+    if($action === 'logout'){
+        session_start();
+        session_destroy();
+        echo "success";
+    }
+
     if($action === "login"){
         if(isset($_POST["email"]) && !empty($_POST["email"])){
             $email = Utils::sanitize($conn->getConnection(), $_POST["email"]);
