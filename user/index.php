@@ -88,4 +88,8 @@ class User{
         $statement = "SELECT * FROM {$this->table_name}";
         return mysqli_query($this->conn, $statement);
     }
+    public function delUser($id){
+        $statement = "DELETE FROM {$this->table_name} WHERE id= '{$id}'";
+        return mysqli_query($this->conn, $statement);
+    }
 }

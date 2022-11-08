@@ -35,7 +35,7 @@ export default class PathManager{
         formData.append("path", path);
         await requestHandleFolderAndFiles("path-manager/index.php", formData)
             .then(res=>{
-                document.querySelector(".content").innerHTML = res;
+               $(".content").append(res);
             }).
             catch(e => alert(e))
        

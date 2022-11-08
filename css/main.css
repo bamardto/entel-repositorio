@@ -1031,7 +1031,7 @@ header .wrapper .logout img {
   padding: 10px;
   width: 33.3%;
 }
-.container .main-content table tr div span a {
+/* .container .main-content table tr div span a {
   color: black;
 }
 .container .main-content table tr div span {
@@ -1057,7 +1057,7 @@ header .wrapper .logout img {
   padding-left: 13px !important;
   padding-right: 15px !important;
   text-align: center;
-}
+} */
 .container .main-content table tr td a {
   color: black;
 }
@@ -1077,7 +1077,8 @@ header .wrapper .logout img {
 .container .main-content table tr td.bg {
   background: #F4F4F4;
 }
-.container .main-content table tr input[type=checkbox] {
+.container .main-content table tr input[type=checkbox],
+.container .main-content table tr input[type=radio] {
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -1087,7 +1088,8 @@ header .wrapper .logout img {
   border: 1px solid #10069F;
   border-radius: 4px;
 }
-.container .main-content table tr input[type=checkbox]:checked {
+.container .main-content table tr input[type=checkbox]:checked,
+.container .main-content table tr  input[type=radio]:checked {
   background: url(../img/check-icon.svg) no-repeat center center #10069F;
 }
 

@@ -123,7 +123,7 @@ $(document).ready(function() {
       }
    });
 
-   $('input[type=checkbox]').click(function() {
+   $('input[type=checkbox], input[type=radio]').click(function() {
       if($(this).prop("checked")) {
          $('.secondary li').removeClass('disabled');
       } else {
@@ -246,3 +246,7 @@ $(document).ready(function() {
    });
 
 });
+function getSelectValue(){
+   var selectedValue = document.getElementById("list").value;
+   console.log(selectedValue);
+}

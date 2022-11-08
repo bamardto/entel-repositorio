@@ -11,25 +11,25 @@ class Widgets{
     } */
     public static function homeRowListFile($file_name, $data){
         return '
-        <div class="file" data-path="'.$data.'">
-            <span><input type="checkbox"></span>
-            <span><img src="img/file-icon.svg" alt=""></span>
-            <span>'.$file_name.'</span>
-            <span>28 de Sep.</span>
-            <span>44,7 KB</span>
-        </div>
+        <tr class="file" data-path="'.$data.'">
+            <td><input type="checkbox"></td>
+            <td><img src="img/file-icon.svg" alt=""></td>
+            <td>'.$file_name.'</td>
+            <td>28 de Sep.</td>
+            <td>44,7 KB</td>
+        </tr>
         
         ';
     }
     public static function homeRowListFolder($folder_name, $data){
         return '
-        <div class="folder" data-path="'.$data.'">
-            <span><input type="checkbox"></span>
-            <span><img src="img/folder-icon.svg" alt=""></span>
-            <span><a class="span-folder">'.$folder_name.'</a></span>
-            <span>28 de Sep.</span>
-            <span>44,7 KB</span>
-        </div>
+        <tr class="folder" data-path="'.$data.'">
+            <td><input type="checkbox"></td>
+            <td><img src="img/folder-icon.svg" alt=""></td>
+            <td><a class="td-folder">'.$folder_name.'</a></td>
+            <td>28 de Sep.</td>
+            <td>44,7 KB</td>
+        </tr>
         
         ';
     }
@@ -59,7 +59,7 @@ class Widgets{
             <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar w/ text</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">' . $icon . '</span>
+                <td class="navbar-toggler-icon">' . $icon . '</td>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -73,9 +73,9 @@ class Widgets{
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
                 </ul>
-                <span class="navbar-text">
+                <td class="navbar-text">
                     '. $username .'
-                </span>
+                </td>
             </div>
             </div>
         </nav>

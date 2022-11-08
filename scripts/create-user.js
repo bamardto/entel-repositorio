@@ -10,7 +10,18 @@ document.forms['formAddUser'].onsubmit = (e) => {
         if(xml.readyState == XMLHttpRequest.DONE){
             console.log("entro xml");
             if(xml.responseText == "success"){
-                location.reload();
+                setTimeout(() => {
+                    
+                    
+                }, 2000);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Usuario creado con exito!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                this.getUsers();
             }else{
                 alert(xml.responseText);
             }
@@ -38,5 +49,35 @@ function getUsers(){
 
     xml.open("GET", "./user-crud/index.php", true);
     xml.send();
+} 
+
+function getRadioIdAndDelete() {
+    $(document).on('click','input[type="radio"]:checked' ,function(e) { 
+        const item = this.value;
+        console.log(item);
+        document.getElementById("confirmUser").addEventListener("click", function (){
+            
+            const dataString = 'item='+item;
+        
+            $.ajax({
+                type: "POST",
+                url: "user-crud/index.php",
+                data: dataString,
+                success: function(response) {	
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'El usuario ha sido Eliminado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    
+                }
+
+            });
+            
+        });
+    });
 }
+getRadioIdAndDelete();
 

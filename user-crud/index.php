@@ -59,7 +59,16 @@ if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && !empty($_
         }
     }
     
-}else if($_SERVER["REQUEST_METHOD"] === "GET"){
+}else if($_SERVER["REQUEST_METHOD"] === "POST"){
+    $conn = new Config();
+    $userInstance  = new User($conn->getConnection());
+    $item = $_POST["item"];
+    
+    $users = $userInstance->delUser($item);
+
+    echo"succes";
+}
+/* else if($_SERVER["REQUEST_METHOD"] === "GET"){
     $conn = new Config();
     $userInstance  = new User($conn->getConnection());
     $users = $userInstance->getUsers();
@@ -71,8 +80,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && !empty($_
         $id = $row['id'];
 
         echo'
-        <div class="file"" data-id="'.$id.'">
-            <span><input type="checkbox"></span>
+        <div class="file"">
+            <span><input type="radio" value="'.$id.'" id="userCheck"></span>
             <span><img src="img/user-icon.svg" style="margin: 0 3px;" alt=""></span>
             <span>'.$username.'</span>
             <span>'.$profile.'</span>
@@ -81,7 +90,8 @@ if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["action"]) && !empty($_
         ';
 
     }
-}else{
+} */
+else{
     echo "Ha ocurrido un error";
 }
 

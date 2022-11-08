@@ -27,7 +27,7 @@
          <header>
             <div class="wrapper">
                <div class="overlay"></div>
-               <div class="filter">
+               <div class="filter" id="filter">
                   <select>
                      <option value="hide">Filtrar por</option>
                      <option>Tipo</option>
@@ -62,7 +62,7 @@
             </div>
          </header>
          <div class="container">
-            <aside class="sidebar">
+            <aside class="sidebar" id="sidebar">
                <?php
                $config = new Config();
                $user = new User($config->getConnection());
@@ -259,8 +259,8 @@
                               <th>Modificado</th>
                               <th>Tamaño de archivo</th>
                            </tr>
-                           <tr class="content">
-                           </tr>
+                           <tr class="content"></tr>
+                          
                         </table>
                            
                      </div>
@@ -315,9 +315,30 @@
                               <th>Perfil</th>
                               <th>Email</th>
                            </tr>
-                           <tr class="content-user">
-
-                           </tr>
+                     
+                           <?php
+                                 $conn = new Config();
+                                 $userInstance  = new User($conn->getConnection());
+                                 $users = $userInstance->getUsers();
+                                 
+                                    foreach($users as $row) {
+                                          $username = $row['username'];
+                                          $profile = $row['profile'];
+                                          $email = $row['email'];
+                                          $id = $row['id'];
+                                          echo "<tr>";
+                                             echo '
+                                                <td><input type="radio" name="user" value="'.$id.'" id="userCheck"></td>
+                                                <td><img src="img/user-icon.svg" style="margin: 0 3px;" alt=""></td>
+                                                <td>'.$username.'</td>
+                                                <td>'.$profile.'</td>
+                                                <td>'.$email.'</td>
+                                             ';
+                                          echo "</tr>";
+                              
+                                    }
+                              ?>
+                          
                         </table>
                      </div>
                   </div>
@@ -349,7 +370,7 @@
                   <div class="modal delete-user">
                      <h2>Confirma si deseas eliminar al usuario 01</h2>
                      <div class="wrap">
-                        <a href="javascript:;" class="yes">Si</a>
+                        <a href="javascript:;" id="confirmUser" class="yes">Si</a>
                         <a href="javascript:;" class="no">No</a>
                      </div>
                   </div>
@@ -369,5 +390,6 @@
 
       <script src="./init.js" type="module"></script>
       <script src="scripts/create-user.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </body>
 </html>

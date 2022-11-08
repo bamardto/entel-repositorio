@@ -11,7 +11,9 @@ export default class App{
     }
 
     handleEvents(){
+        
         $(document).on('click', ".btn_sidebar", (e)=>{
+            
             let data = e.target.getAttribute("data-pos");
             console.log(data);
             const contenedorPrincipal = document.getElementById('main-content-tool');
@@ -24,15 +26,18 @@ export default class App{
                 contenedorPrincipalUser.style.display = "none";
             }
             this.pathManager.setCurrentPathWithIndex(data);
+            
         });
         
-        $(document).on('click', ".folder", (e)=>{
+        const te = $(document).on('click', ".folder", (e)=>{
             let data = e.target.closest(".folder").getAttribute("data-path");
             this.pathManager.hangleCurrentPath(data);
+            location.reload();
         })
         $(document).on('click', ".logout", (e)=>{
             this.logout();
         })
+        
     }
     async logout(){
         const formData = new FormData();
